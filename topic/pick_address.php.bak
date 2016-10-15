@@ -1,0 +1,47 @@
+<?php
+$mysqli = new mysqli('localhost', 'root', 'iseebi3014', 'licht') or die('fuck');	
+$sql = "select email from users where id IN (";
+for($i=0; $i<count($_POST['id']); $i++){
+	$sql .= $_POST['id'][$i];
+	if($i!=count($_POST['id'])-1) $sql .= ",";
+}
+$sql .= ");";
+$datas = $mysqli->query($sql);
+
+var_dump($_POST);
+
+
+require("../library/PHPMailer/class.phpmailer.php");
+
+//言語設定、内部エンコーディングを指定する
+mb_language("japanese");
+$org = mb_internal_encoding();
+mb_internal_encoding("JIS");
+//日本語添付メールを送る
+$subject = "【リヒト連絡】{$_POST['subject']}";
+$body = " 配信者：{$_POST['sender']}
+
+{$_POST['body']}
+
+=======================
+Sent from Licht Portal
+このメールに返信しても届きません。
+
+楽団リヒトポータルサイト
+http://lichtportal.biz/sp/
+※スマートフォン閲覧推奨
+";
+$from = "admin@mail.lichtportal.biz"; 
+$fromname = "楽団リヒト";
+$mail = new PHPMailer();
+$mail->CharSet = "iso-2022-jp";
+$mail->Encoding = "7bit";
+while($data = $datas->fetch_assoc()){
+	$mail->AddBCC($data['email']);
+}
+$mail->From = $from;
+$mail->FromName = mb_encode_mimeheader(mb_convert_encoding($fromname,"JIS","UTF-8"));
+$mail->Subject = mb_encode_mimeheader(mb_convert_encoding($subject,"JIS","UTF-8"));
+$mail->Body  = mb_convert_encoding($body,"JIS","UTF-8");
+var_dump($mail->Send());
+mb_internal_encoding($org);

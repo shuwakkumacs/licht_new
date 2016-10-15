@@ -1,0 +1,43 @@
+#member_list{
+	width:100%;
+}
+
+#member_list>.inputs {
+	border-bottom:1px solid #ccc;
+}
+
+#member_list>.inputs>div:first-child { 
+	width:20%;
+	vertical-align:middle;
+	text-align:left;
+	font-size:0.8em;
+	color:#333;
+	float:left;
+}
+#member_list>.inputs>div:nth-child(2) { 
+	float:left;
+	width:80%; 
+}
+
+input[type="text"], select,textarea {
+	width:100%;
+	border:0;
+	font-size:1.1em;
+	padding-left:0;
+	margin-left:0;
+}
+
+input[type="check"] {
+	font-size:x-large;
+	height:20px;
+	width:20px;
+}
+
+#inst {
+	background:#ccc;
+	width:100%;
+	padding:0px 5px;
+	margin-top:-30px;
+	margin-left:-5px;
+	font-size:0.9em;
+}

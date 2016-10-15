@@ -1,0 +1,35 @@
+<?php
+	$mysqli = new mysqli('localhost', 'root', 'iseebi3014', 'licht') or die('fuck');	
+	$sql="select id,part,name_kanji,email from users;";
+	$datas = $mysqli->query($sql);
+
+	function checkEmail($data){
+		if($data['email']=='') return ' disabled="disabled"';
+		else return '';
+	}
+?>
+<html>
+<head>
+	<link rel="stylesheet" href="../library/css/send_mail.css">
+	<meta content="width=320, minimum-scale=0.5, user-scalable=no" name="viewport" />
+	<script type="text/javascript" src="../library/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="../library/js/send_mail.js"></script>
+</head>
+<body>
+<input type="button" id="checkall" value="全て選択/選択解除">
+<form method="post" action="pick_address.php.bak" onsubmit="return false;">
+<table id="member_list">
+<?php
+	while($data=$datas->fetch_assoc()) { ?>
+		<tr><td style="width:10%; text-align:right"><input type="checkbox" class="checkbox" id="<?php echo "check{$data['id']}"; ?>" name="id[]" value="<?php echo $data['id']; ?>"<?php echo checkEmail($data); ?>></td>
+			<td style="width:90%;"><label for="<?php echo "check{$data['id']}"; ?>"><?php echo "({$data['part']}) {$data['name_kanji']}"; ?></label></td></tr>
+<?php }
+?>
+<tr>	<td>名前</td><td><input type="text" name="sender"></td></tr>
+<tr>	<td>題名</td><td><input type="text" name="subject"></td></tr>
+<tr>	<td>本文</td><td><textarea rows="8" name="body"></textarea></td></tr>
+</table>
+<input type="button" value="送信" onclick="submit();">
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+input, select {
+	width:100%;
+	border:solid 1px #ccc;
+	font-size:1.0em;
+	z-index:1;
+}
+
+input[type="radio"] {
+	font-size:x-large;
+	height:20px;
+	width:20px;
+} 
+
+#inst {
+	margin:0 auto;
+	background:#ccc;
+	padding:3px;
+	width:80%;
+}
+
+#daterows{
+	width:100%;
+}
+
+#daterows tr td{
+	padding:3px;
+}

@@ -1,0 +1,55 @@
+<?php
+	require('../library/layout/header.php');
+	require('../library/include/MyDBClass_mysql.php');
+	require('../library/include/utils.php');
+	$db = new MyDBClass_mysql();
+
+	/*
+	 * $_GET['p'] ... $s_part   ... パート番号、-1:指定なし
+	 * $_GET['a'] ... $s_attend ... 乗り番、-1:指定なし 0:非乗り番 1:乗り番
+	 */
+	if( !isset($_GET['p']) || $_GET['p']==-1 ) $s_part = "1=1"; 
+	else $s_part = "`part_id`='{$_GET['p']}'";
+	if( !isset($_GET['a']) || $_GET['a']==-1 ) $s_attend = "1=1"; 
+	else $s_attend = "`concert_attendance`='{$_GET['a']}'";
+	$sql = "SELECT id,name_kanji FROM users WHERE {$s_part} AND {$s_attend} ORDER BY `part_id` ASC;";
+	$userData = $db->executeQuery( $sql );
+
+?>
+<style> input[type="checkbox"] { width:20px; } </style>
+
+<div id="main">
+	<div id="pagetitle">
+		<div class="left"><a href="../index.php">&lt;</a></div>
+		<div class="center">団員情報</div>
+		<div class="clear"></div>
+	</div>
+		<div style="float:left;width:20%;line-height:35px;">パート</div>
+		<div style="float:left;width:80%;height:35px;">
+			<select name="p" style="width:100%;">
+				<option value="-1">指定しない</option>
+				<?php
+				foreach( $parts_full as $k => $v ) echo "<option value='{$k}'>{$v}</option>";
+				?>
+			</select>
+		</div>
+		<div class="clear"></div>
+		<br><br>
+		該当件数：<?php echo count($userData); ?>件
+		<ul class="select_list">
+		<?php
+		$prev_part = "";
+		foreach( $userData as $user ){
+			if( $prev_part != $user['part_id'] ){
+				echo '<li class="category_title"><p>'. $parts_full[ $user['part_id'] ]. '</p></li>';
+				$prev_part = $user['part_id'];
+			}
+			?>
+				<a href="edit.php?id=<?php echo $user['id']; ?>"><li><p><?php echo "{$user['name_kanji']}"; ?></p></li></a>
+			<?php
+		}
+		?>
+		</ul>
+</div>
+</body>
+</html>

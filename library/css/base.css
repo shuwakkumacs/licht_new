@@ -1,0 +1,146 @@
+#main {
+	margin:50px 5px 10px 5px;
+	-webkit-appearance:none;
+}
+
+#pagetitle {
+	margin-left   : -5px;
+	padding-left  : 10px;
+	background    : #6CB65E;
+	width         : 100%;
+	font-size     : 1.3em;
+	font-weight   : 900;
+	color         : #fff;
+	margin-bottom : 30px;
+	line-height   : 2.0;
+	text-align    : center;
+}
+
+#pagetitle .center {
+	float : left;
+	width : 80%;
+}
+
+#pagetitle .left {
+	float       : left;
+	width       : 10%;
+	margin-left : -5px;
+}
+
+#pagetitle a {
+	color           : #fff;
+	font-style      : normal;
+	text-decoration : none;
+}
+
+hr.heading {
+	border           : 0;
+	border-bottom    : 1px dashed #ccc;
+	background       : #999;
+	background-color : #ff0000;
+}
+
+p.heading {
+	margin-top  : 25px;
+	font-weight : 700;
+}
+
+p.new {
+	color : #ff8000;
+}
+
+.navlink {
+	text-align : center;
+	width      : 40%;
+	border     : 1px solid #be9100;
+	background : #fbffd2;
+}
+
+.navlink a{
+	color           : #ff9000;
+	text-decoration : none;
+}
+
+input {
+	line-height : 2.0;
+	width       : 100%;
+	border      : solid 1px #ccc;
+	font-size   : 1.1em;
+	-webkit-border-radius : 0px;
+}
+
+input[type="text"],[type="password"],[type="button"],[type="submit"] {
+	-webkit-appearance: none;
+}
+
+input.submit{
+	margin-top : 15px;
+	background : #427fed;
+	color      : #fff;
+	border     : none;
+	-webkit-border-radius : 2px;
+}
+
+input.delete{
+	margin-top : 15px;
+	background : #d14836;
+	color      : #fff;
+	border     : none;
+	-webkit-border-radius : 2px;
+}
+
+select {
+	border    : solid 1px #666;
+	font-size : 1.0em;
+}
+
+.select_list {
+	width:100%;
+	border-bottom : solid 1px #ccc;
+	margin-top    : 30px;
+}
+
+.select_list a {
+	text-decoration : none;
+	color           : #000;
+}
+
+.select_list li {
+	border-top    : solid 1px #ccc;
+	padding-left  : 5px;
+}
+
+.select_list li.category_title {
+	background  : #ccc;
+}
+
+.select_list li.category_title p {
+	text-align      : center;
+	font-size       : 0.8em;
+	line-height     : 20px; 
+}
+
+.select_list li p {
+	line-height : 40px;
+}
+
+.input_area {
+	margin : 3px 0px 0px 10px;
+}
+
+input#submit {
+	padding          : 5px 25px;
+	font-size        : 1.2em;
+	background-color : #A01010;
+	color            : #fff;
+	border-style     : none;
+}
+
+.pagerbar {
+	width         : 100%;
+	margin-bottom : 30px;
+}
+
+.clear {
+	clear : both;
+}
